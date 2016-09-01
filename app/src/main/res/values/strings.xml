@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AnimationLearn</string>
+
+
+    <string name="array_animation">
+        <item>property</item>
+        <item>object</item>
+        <item>value</item>
+        <item>rotate</item>
+        <item>try ptr</item>
+    </string>
+</resources>
