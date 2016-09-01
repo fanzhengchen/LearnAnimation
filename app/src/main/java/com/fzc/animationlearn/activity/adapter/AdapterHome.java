@@ -6,34 +6,36 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fzc.animationlearn.R;
+import com.fzc.animationlearn.activity.activity.ActivityPropertyAnimation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by fanzhengchen on 9/1/16.
  */
-public class AdapterHome extends AdapterBase<AdapterHome.ViewHolderHome>{
+public class AdapterHome extends AdapterBase<AdapterHome.ViewHolderHome> {
 
 
     private List<String> data;
     private ArrayList<String> strings;
 
     public AdapterHome(List<String> data) {
-        Collections.copy(data, this.data);
+        this.data = data;
     }
 
     @Override
     public ViewHolderHome onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        return new ViewHolderHome(mInflater.inflate(R.layout.item_home_layout, parent, false));
     }
 
     @Override
     public void onBindViewHolder(ViewHolderHome holder, int position) {
-
+        holder.setText(data.get(position));
     }
 
     @Override
@@ -41,12 +43,28 @@ public class AdapterHome extends AdapterBase<AdapterHome.ViewHolderHome>{
         return getCollectionCount(data);
     }
 
-    public static class ViewHolderHome extends RecyclerView.ViewHolder {
+    class ViewHolderHome extends RecyclerView.ViewHolder {
         @BindView(R.id.home_list_item_text)
         TextView homeListItemText;
 
         public ViewHolderHome(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        void setText(String text) {
+            homeListItemText.setText(text);
+        }
+
+        @OnClick(R.id.home_list_item_parent)
+        public void subMenu() {
+            final int position = getAdapterPosition();
+            switch (position) {
+                case 0: {
+                    ActivityPropertyAnimation.start(mActivity);
+                    break;
+                }
+            }
         }
     }
 

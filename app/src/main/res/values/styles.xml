@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <declare-styleable name="DividerItemDecoration">
+        <attr name="dividerItemColor" format="color" />
+        <attr name="dividerItemHeight" format="dimension" />
+    </declare-styleable>
 </resources>

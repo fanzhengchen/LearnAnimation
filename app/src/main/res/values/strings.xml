@@ -2,11 +2,16 @@
     <string name="app_name">AnimationLearn</string>
 
 
-    <string name="array_animation">
+    <array name="array_animation">
         <item>property</item>
         <item>object</item>
         <item>value</item>
         <item>rotate</item>
-        <item>try ptr</item>
-    </string>
+        <item>try pull to refresh</item>
+        <item>recycler view animation</item>
+        <item>activity animation</item>
+        <item>translate</item>
+        <item>view group layout</item>
+        <item>explosion</item>
+    </array>
 </resources>
