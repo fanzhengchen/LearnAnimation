@@ -11,10 +11,15 @@
         android:background="@color/gray">
 
         <View
-            android:id="@+id/child_first"
-            android:layout_width="300dp"
+            android:id="@+id/back_view"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/lightGreen" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lightBlue"/>
 
     </com.fzc.viewdraghelper.DragView>
 
