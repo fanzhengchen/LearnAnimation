@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="gray">#FFD2CACA</color>
     <color name="divider_color">#FFCCD2D2</color>
 </resources>

@@ -20,7 +20,10 @@
 
         <activity android:name=".activity.activity.ActivityPropertyAnimation" />
 
-        <service android:name=".activity.service.InitialService"/>
+        <activity android:name=".activity.activity.ActivityViewDragHelper" />
+
+        <service android:name=".activity.service.InitialService" />
+
     </application>
 
 </manifest>

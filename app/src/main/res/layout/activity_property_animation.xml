@@ -4,7 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:background="@color/gray"
+        android:text="@string/start" />
+
+    <Button
+        android:id="@+id/end_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:background="@color/gray"
+        android:text="@string/end" />
+
     <View
+        android:id="@+id/property_view"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="10dp"

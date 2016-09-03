@@ -17,7 +17,9 @@ import com.fzc.animationlearn.R;
  */
 public abstract class ActivityBase extends AppCompatActivity {
 
-
+    protected static final String ALPHA = "alpha";
+    protected static final String TRANSLATION_X = "translationX";
+    protected static final String TRANSLATION_Y = "translationY";
     protected int getFeature() {
         return Window.FEATURE_CONTENT_TRANSITIONS;
     }

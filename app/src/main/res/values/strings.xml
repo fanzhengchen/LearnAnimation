@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">AnimationLearn</string>
-
+    <string name="start">start</string>
+    <string name="end">end</string>
 
     <array name="array_animation">
         <item>property</item>
+        <item>viewDragHelper</item>
         <item>object</item>
         <item>value</item>
         <item>rotate</item>
