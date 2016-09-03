@@ -1,6 +1,5 @@
 package com.fzc.animationlearn.activity.activity;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -27,8 +26,7 @@ public class ActivityPropertyAnimation extends ActivityBase {
 
     private final ObjectAnimator mObjectAnimator = new ObjectAnimator();
     private final ObjectAnimator mAnimator = new ObjectAnimator();
-    private final AnimatorSet animatorSet = new AnimatorSet.Builder()
-            .
+    private final AnimatorSet animatorSet = new AnimatorSet();
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, ActivityPropertyAnimation.class);
@@ -55,21 +53,27 @@ public class ActivityPropertyAnimation extends ActivityBase {
     }
 
     private void startAnimation() {
-        mObjectAnimator.setTarget(mPropertyView);
-
-        mObjectAnimator.setPropertyName(TRANSLATION_Y);
-        mObjectAnimator.setFloatValues(0, 50, 150, 350, 750, 350, 150, 50, 0);
-
-        mObjectAnimator.setDuration(5 * 1000);
-        mObjectAnimator.setRepeatCount(-1);
 
 
-        mObjectAnimator.start();
+        int startColor = getColorCompat(R.color.lightGreen);
+        int endColor = getColorCompat(R.color.colorAccent);
+        animatorSet.playTogether(
+                ObjectAnimator.ofFloat(mPropertyView, "translationX", 0, 300)
+                        .setDuration(3000),
+                ObjectAnimator.ofFloat(mPropertyView, "translationY", 0, 600)
+                        .setDuration(5000),
+                ObjectAnimator.ofFloat(mPropertyView, "rotationX", 0, 359)
+                        .setDuration(5000),
+                ObjectAnimator.ofArgb(mPropertyView, "backgroundColor", startColor, endColor)
+                        .setDuration(5000)
+        );
+//        animatorSet.
+//        animatorSet.setDuration(5000);
+        animatorSet.start();
     }
 
     private void endAnimation() {
-//        mObjectAnimator.end();
-        mObjectAnimator.cancel();
+
     }
 
 
