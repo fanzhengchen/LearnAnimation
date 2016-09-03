@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.fzc.viewdraghelper.DragView
+        android:id="@+id/drag_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+        <View
+            android:id="@+id/child_first"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@color/lightGreen" />
+
+    </com.fzc.viewdraghelper.DragView>
 
 </LinearLayout>

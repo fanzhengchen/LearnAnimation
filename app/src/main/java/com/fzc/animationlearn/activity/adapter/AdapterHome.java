@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.fzc.animationlearn.R;
 import com.fzc.animationlearn.activity.activity.ActivityPropertyAnimation;
+import com.fzc.animationlearn.activity.activity.ActivityRxBind;
 import com.fzc.animationlearn.activity.activity.ActivityViewDragHelper;
 
 import java.util.ArrayList;
@@ -65,8 +66,12 @@ public class AdapterHome extends AdapterBase<AdapterHome.ViewHolderHome> {
                     ActivityPropertyAnimation.start(mActivity);
                     break;
                 }
-                case 1:{
+                case 1: {
                     ActivityViewDragHelper.start(mActivity);
+                    break;
+                }
+                case 2: {
+                    ActivityRxBind.start(mActivity);
                     break;
                 }
             }

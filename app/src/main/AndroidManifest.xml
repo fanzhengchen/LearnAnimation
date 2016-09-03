@@ -22,7 +22,10 @@
 
         <activity android:name=".activity.activity.ActivityViewDragHelper" />
 
+        <activity android:name=".activity.activity.ActivityRxBind" />
+
         <service android:name=".activity.service.InitialService" />
+
 
     </application>
 
