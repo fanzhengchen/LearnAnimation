@@ -24,6 +24,8 @@
 
         <activity android:name=".activity.activity.ActivityRxBind" />
 
+        <activity android:name=".activity.activity.ActivityRealm" />
+
         <service android:name=".activity.service.InitialService" />
 
 

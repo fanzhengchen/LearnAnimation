@@ -12,6 +12,8 @@ import android.view.Window;
 
 import com.fzc.animationlearn.R;
 
+import io.realm.Realm;
+
 /**
  * Created by fanzhengchen on 9/1/16.
  */
@@ -20,9 +22,12 @@ public abstract class ActivityBase extends AppCompatActivity {
     protected static final String ALPHA = "alpha";
     protected static final String TRANSLATION_X = "translationX";
     protected static final String TRANSLATION_Y = "translationY";
+
     protected int getFeature() {
         return Window.FEATURE_CONTENT_TRANSITIONS;
     }
+
+    protected Realm realm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public abstract class ActivityBase extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.fade);
         getWindow().setEnterTransition(transition);
+        realm = Realm.getDefaultInstance();
     }
 
     protected int getColorCompat(@ColorRes int resId) {

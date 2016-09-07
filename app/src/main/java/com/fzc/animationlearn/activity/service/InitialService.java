@@ -10,6 +10,7 @@ import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.fzc.animationlearn.activity.AppConstance;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
 
@@ -34,7 +35,12 @@ public class InitialService extends IntentService {
         Log.d("intent action", intent.getAction());
         if (TextUtils.equals(intent.getAction(), AppConstance.APP_INIT)) {
             initFresco();
+            initLogger();
         }
+    }
+
+    private void initLogger() {
+        Logger.init();
     }
 
     private void initFresco() {

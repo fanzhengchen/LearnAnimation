@@ -8,18 +8,28 @@
         android:id="@+id/drag_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray">
+        android:background="@color/white">
 
-        <View
+        <FrameLayout
             android:id="@+id/back_view"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/lightGreen" />
+            android:layout_height="120dp"
+            android:background="@color/white">
 
-        <View
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/icon_reveal"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/circle" />
+        </FrameLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_drag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/lightBlue"/>
+            android:background="@color/lightBlue" />
 
     </com.fzc.viewdraghelper.DragView>
 

@@ -1,24 +1,26 @@
 package com.fzc.viewdraghelper;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 /**
  * Created by fanzhengchen on 9/3/16.
  */
-public class DragView extends ViewGroup {
+public class DragView extends FrameLayout {
 
     private ViewDragHelper mDragHelper;
     private DragCallBack mDragCallBack;
     private View mContentView;
     private View mMenuView;
     private int mCurrentTop = 0;
+    private View mAnimationView = null;
+    private ObjectAnimator mRotateAnimator = null;
 
     public DragView(Context context) {
         this(context, null);
@@ -35,7 +37,7 @@ public class DragView extends ViewGroup {
     public DragView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         mDragCallBack = new DragCallBack();
-        mDragHelper = ViewDragHelper.create(this, 1, mDragCallBack);
+        mDragHelper = ViewDragHelper.create(this, 10, mDragCallBack);
     }
 
     @Override
@@ -43,39 +45,26 @@ public class DragView extends ViewGroup {
         super.onFinishInflate();
         mMenuView = getChildAt(0);
         mContentView = getChildAt(1);
+        if (mMenuView instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) mMenuView;
+            if (viewGroup.getChildCount() > 0) {
+                mAnimationView = viewGroup.getChildAt(0);
+                mRotateAnimator = ObjectAnimator.ofFloat(mAnimationView, "rotation", 360)
+                        .setDuration(1000);
+                mRotateAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+            }
+        }
     }
-
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
-        setMeasuredDimension(measureWidth, measureHeight);
-        measureChildren(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        mMenuView.layout(0, 0,
-                mMenuView.getMeasuredWidth(), mMenuView.getMeasuredHeight());
-        mContentView.layout(0, mCurrentTop,
-                mContentView.getMeasuredWidth(),
-                mCurrentTop + mContentView.getMeasuredHeight());
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-    }
-
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return mDragHelper.shouldInterceptTouchEvent(ev);
+        mDragHelper.shouldInterceptTouchEvent(ev);
+        return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        System.out.println("on touch");
         mDragHelper.processTouchEvent(event);
         return true;
     }
@@ -96,9 +85,44 @@ public class DragView extends ViewGroup {
 
         @Override
         public int clampViewPositionVertical(View child, int top, int dy) {
-            Log.d("clamp view position ", top + "");
-//            return super.clampViewPositionVertical(child, top, dy);
-            return Math.max(Math.min(top, mMenuView.getHeight()),0);
+            if (top < 0) {
+                return 0;
+            }
+            return Math.max(Math.min(top, mMenuView.getHeight()), 0);
+        }
+
+        @Override
+        public void onViewDragStateChanged(int state) {
+            super.onViewDragStateChanged(state);
+        }
+
+        @Override
+        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+            startRotate();
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mDragHelper.smoothSlideViewTo(mContentView, 0, 0);
+                    invalidate();
+                    endRotate();
+                }
+            }, 2000);
+        }
+
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+        }
+    }
+
+    private void startRotate() {
+        if (mRotateAnimator != null) {
+            mRotateAnimator.start();
+        }
+    }
+
+    private void endRotate() {
+        if (mRotateAnimator != null) {
+            mRotateAnimator.end();
         }
     }
 

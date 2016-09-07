@@ -2,11 +2,14 @@
     <string name="app_name">AnimationLearn</string>
     <string name="start">start</string>
     <string name="end">end</string>
+    <string name="add">add</string>
+    <string name="query">query</string>
 
     <array name="array_animation">
         <item>property</item>
         <item>viewDragHelper</item>
         <item>rxBind</item>
+        <item>realm</item>
         <item>try pull to refresh</item>
         <item>recycler view animation</item>
         <item>activity animation</item>
